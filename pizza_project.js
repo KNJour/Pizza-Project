@@ -1,7 +1,5 @@
 function randomPizza() {
-    var randomToppings = [];
     var randomCrust = Math.floor(Math.random() * 3);
-    var randomCheese = [];
     var randomSauce = Math.floor(Math.random() * 3);
 
     if (randomSauce == 0) {
@@ -18,65 +16,55 @@ function randomPizza() {
         else { randomCrust = "Thin Crust"}
     
     // start of cheese
-    for (var i = 0; i < 4; i++) {
-        randomCheese.push(Math.floor(Math.random() * 3))
-    }
-
-    for (var g = 0; g < 4; g++) {
-        if (randomCheese[g] == 0) {
-            randomCheese[g] = "Mozzarella";
+    var randomCheeses = []
+    var cheeses = [
+        "Mozzarella",
+        "Cheddar",
+        "Fontina",
+        "Parmasan",
+        "Feta",
+    ];
+    
+    for (var i = 0; i < cheeses.length; i++) {
+        var temp = Math.floor(Math.random() * 5);
+        if ( temp == 0 ) {
+            randomCheeses.push(cheeses[i]);
         }
-        else if (randomCheese[g] == 1) {
-            randomCheese[g] ="Cheddar";
-        }
-        else if (randomCheese[g] == 2) {
-                randomCheese[g] = "Provolone";
-    }
-        else if (randomCheese[g] == 8){ randomCheese.pop(randomCheese[g])} 
     }
     // start of toppings
-            var randomToppings = [];
-            for (var i = 0; i < 9; i++) {
-                randomToppings.push(Math.floor(Math.random() * 9))
-            }
-        
-            for (var x = 0; x < 9; x++) {
-                if (randomToppings[x] == 0) {
-                    randomToppings[x] = "Pepperoni";
-                }
-                else if (randomToppings[x] == 1) {
-                    randomToppings[x] ="Sausage";
-                }
-                else if (randomToppings[x] == 2) {
-                        randomToppings[x] = "Bell Peppers";
-                }
-                else if (randomToppings[x] == 3) {
-                        randomToppings[x] = "Spinach";
-                }
-                else if (randomToppings[x] == 4) {
-                        randomToppings[x] = "Pinneapple";
-                }
-                else if (randomToppings[x] == 5) {
-                        randomToppings[x] = "Bacon";
-                }
-                else if (randomToppings[x] == 6) {
-                        randomToppings[x] = "Onions";
-                }
-                else if (randomToppings[x] == 7) {
-                        randomToppings[x] = "Mushrooms";
-                }
-                else if (randomToppings[x] == 8) { randomToppings.pop(randomToppings[x])} 
-            }
+    var randomToppings = []
+    var toppings = [
+        "Pepperoni",
+        "Mushrooms",
+        "Sausage",
+        "Ham",
+        "Bacon",
+        "Chicken",
+        "Spinach",
+        "Green Peppers",
+        "Banana",
+        "Garbage, from the trash",
+        "Onions",
+        "Alligator",
+    ];
+    
+    for (var i = 0; i < toppings.length; i++) {
+        var temp = Math.floor(Math.random() * 5);
+        if ( temp == 0 ) {
+            randomToppings.push(toppings[i])
+        }
+    }
                 var random = {
-                    crust: randomCrust,
-                    sauce: randomSauce,
-                    cheese: [randomCheese],
+                    crustType: randomCrust,
+                    sauceType: randomSauce,
+                    cheeses: [randomCheeses],
                     toppings: [randomToppings]
                 };
         return random;
     
             }
-    
+    var mysteryPizza = randomPizza();
+    console.log(mysteryPizza)
     function pizzaOven(crustType, sauceType, cheeses, toppings) {
         var pizza = {
         crust: crustType,
@@ -86,5 +74,5 @@ function randomPizza() {
         };
         return pizza;
     }
-    var myPizza = pizzaOven(randomPizza())
+    var myPizza = pizzaOven("deep-dish", "traditional", ["Mozzarella"], ["Pepperoni", "Sausage"])
     console.log(myPizza);
